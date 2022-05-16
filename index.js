@@ -1,12 +1,13 @@
 const express = require('express')
 const movies = require('./movies')
+const { getAllMovies, isRunning, getDirectorOrTitle } = require('./controllers/movies')
 
 const app = express()
 
-app.get('/', (request, response) => {
-    return response.send(movies)
-})
+app.get('/', getAllMovies)
 
-app.listen(1337, () => {
-    console.log('server is up on http://localhost:1337')
-})
+app.get('/movies/:directorOrTitle', getDirectorOrTitle)
+
+
+
+app.listen(1337, isRunning)
